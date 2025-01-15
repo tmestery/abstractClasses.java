@@ -1,0 +1,74 @@
+package Constructors;
+
+abstract class Employee {
+    
+    // create instance variable
+    private String name;
+    // create constructor for instance variable name
+    public Employee(String name) {
+        this.name = name;
+    }
+
+    public abstract double calculateSalary();
+    public String getDetails() {
+        return "Employee Name: " + name;
+    }
+}
+
+class FullTimeEmployee extends Employee {
+
+    private double monthlySalary;
+
+    // Creating a method for the extended class, fullTimeEmployee
+    public FullTimeEmployee(String name, double monthlySalary) {
+        super(name); // Call the parent constructor
+        this.monthlySalary = monthlySalary;
+    }
+
+    // Using override to access the abstract class and change it for fullTimeEmployee
+    @Override
+    public double calculateSalary() {
+        return monthlySalary;
+    }
+
+}
+
+class PartTimeEmployee extends Employee {
+
+    private double hourlyRate;
+    private double hoursWorked;
+
+    // Creating a method for the extended class, partTimeEmployee
+    public PartTimeEmployee(String name, double hourlyRate, double hoursWorked) {
+        super(name);
+        this.hourlyRate = hourlyRate;
+        this.hoursWorked = hoursWorked;
+    }
+
+    // Using override to access the abstract class and change it for partTimeEmployee
+    @Override
+    public double calculateSalary() {
+        return hourlyRate * hoursWorked;
+    }
+
+}
+
+// Main class to run/debug and print output
+class Main {
+
+    public static void main(String[] args) {
+
+        // Creating instances involving the given parameters
+        FullTimeEmployee fullTime = new FullTimeEmployee("Tyler", 10000);
+        PartTimeEmployee partTime = new PartTimeEmployee("Gavin", 17, 35);
+
+        // Collecting Details
+        System.out.println(fullTime.getDetails());
+        System.out.println(fullTime.calculateSalary() + "\n");
+
+        // More outputting...
+        System.out.println(partTime.getDetails());
+        System.out.println(partTime.calculateSalary() + "\n");
+    }
+
+}
